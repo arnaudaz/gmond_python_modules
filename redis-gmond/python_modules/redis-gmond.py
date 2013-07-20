@@ -31,7 +31,10 @@ def metric_handler(name):
               n, v = line.split(":")
               if n in metric_handler.descriptors:
                   if n == "master_sync_status":
-                      v = 1 if v == 'up' else 0
+                      if v == 'up':
+                        v = 1
+                      else:
+                        v = 0
                   if n == "db0":
                       v = v.split('=')[1].split(',')[0]
                   if n == "used_memory":
